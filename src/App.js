@@ -1,4 +1,5 @@
 import VenueList from "./features/venues/VenueList";
+import './styles.css'
 
 const App = () => {
   return (

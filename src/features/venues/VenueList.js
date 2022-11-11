@@ -4,14 +4,14 @@ const VenueList = () => {
     const data = GetVenues()
 
     const venues = data.map((venue,i) => (
-        <div>
-            <h2>{venue.name}</h2>
+        <div key = {i} className= "venue-item">
             <img src = {venue.photo}/>
+            <h2>{venue.name}</h2>
         </div>
     ))
 
     return(
-        <div>{venues}</div>
+        <div className = "venue-list">{venues}</div>
     )
 }
  
