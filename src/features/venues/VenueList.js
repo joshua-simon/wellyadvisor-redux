@@ -5,31 +5,28 @@ import { useSelector,useDispatch } from "react-redux";
 
 
 const VenueList = () => {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
-  
-  
+  useEffect(() => {
+    dispatch(fetchVenues());
+  }, []);
 
+  const venues = useSelector((state) => state.venues);
 
-useEffect(() => {
-  dispatch(fetchVenues())
-},[])
+  const content = venues.venues.map((venue) => (
+    <Link to={`/venue/${venue.id}`} style = {{textDecoration: "none"}}>
+      <div className="venue-item">
+        <h2>{venue.name}</h2>
+        <img src={venue.photo} />
+      </div>
+    </Link>
+  ));
 
-
-  
-  const venues = useSelector((state) => state.venues)
-
-  console.log(venues)
-
-  return <div>
-    {
-      venues.venues.map(venue => {
-        return (
-          <h2 key = {venue.name}>{venue.name}</h2>
-        )
-      })
-    }
-  </div>;
+  return (
+    <div className="venue-list">
+      {content}
+    </div>
+  );
 };
 
 export default VenueList;

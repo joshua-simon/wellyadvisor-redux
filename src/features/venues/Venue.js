@@ -3,15 +3,20 @@ import { useSelector } from "react-redux";
 
 
 const Venue = () => {
-    const { id } = useParams()
-  
-    const reviews = useSelector((state) => state.reviews.reviews)
+  const { id } = useParams();
 
-    console.log('reviews', reviews)
+  const venues = useSelector((state) => state.venues);
 
-    return (
-        <div>venue</div>
-    )
-}
+  const venue = venues.venues.filter((item) => item.id == id);
+
+  const content = venue.map((item) => (
+    <div className="venue-page-main">
+      <h2>{item.name}</h2>
+      <img src={item.photo} />
+    </div>
+  ));
+
+  return <>{content}</>;
+};
  
 export default Venue;

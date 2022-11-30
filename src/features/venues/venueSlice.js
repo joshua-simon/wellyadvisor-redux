@@ -1,7 +1,7 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import { collection,query,getDocs } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
-import { useEffect, useState } from "react";
+
 
 const initialState = {
     venues: []
@@ -22,20 +22,19 @@ export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
   });
 
 const venueSlice = createSlice({
-    name: 'venues',
-    initialState,
-    reducers: {
-        ADD_REVIEW: (state,action) => {
-            state.push(action.payload)
-        }
+  name: "venues",
+  initialState,
+  reducers: {
+    ADD_REVIEW: (state, action) => {
+      state.push(action.payload);
     },
-    extraReducers(builder) {
-        builder
-            .addCase(fetchVenues.fulfilled, (state,action) => {
-                state.venues = action.payload
-            })
-    }
-})
+  },
+  extraReducers(builder) {
+    builder.addCase(fetchVenues.fulfilled, (state, action) => {
+      state.venues = action.payload;
+    });
+  },
+});
 
 
 
