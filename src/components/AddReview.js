@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { ADD_REVIEW } from "../features/venues/venueSlice"
 import { nanoid } from "@reduxjs/toolkit"
 import { postReview } from "../features/venues/venueSlice"
 

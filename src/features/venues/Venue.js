@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AddReview from "../../components/AddReview";
+import Reviews from "../../components/Reviews";
 
 const Venue = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const Venue = () => {
     <>
         {content}
         <AddReview id = {id}/>
+        <Reviews venue = {venue}/>
     </>
   );
 };

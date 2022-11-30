@@ -36,28 +36,16 @@ export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
   })
 
 
-
 const venueSlice = createSlice({
   name: "venues",
   initialState,
-  reducers: {
-    ADD_REVIEW: (state, action) => {
-      state.push(action.payload);
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(fetchVenues.fulfilled, (state, action) => {
       state.venues = action.payload;
     })
-      .addCase(postReview.fulfilled, (state,action) => {
-
-      })
   },
 });
-
-
-
-export const { ADD_REVIEW } = venueSlice.actions
 
 export default venueSlice.reducer
