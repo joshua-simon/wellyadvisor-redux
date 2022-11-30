@@ -1,18 +1,35 @@
-import { GetVenues } from "../../api";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { fetchVenues } from "./venueSlice";
+import { useSelector,useDispatch } from "react-redux";
+
 
 const VenueList = () => {
-    const data = GetVenues()
 
-    const venues = data.map((venue,i) => (
-        <div key = {i} className= "venue-item">
-            <img src = {venue.photo}/>
-            <h2>{venue.name}</h2>
-        </div>
-    ))
+  const dispatch = useDispatch()
+  
+  
 
-    return(
-        <div className = "venue-list">{venues}</div>
-    )
-}
- 
+
+useEffect(() => {
+  dispatch(fetchVenues())
+},[])
+
+
+  
+  const venues = useSelector((state) => state.venues)
+
+  console.log(venues)
+
+  return <div>
+    {
+      venues.venues.map(venue => {
+        return (
+          <h2 key = {venue.name}>{venue.name}</h2>
+        )
+      })
+    }
+  </div>;
+};
+
 export default VenueList;

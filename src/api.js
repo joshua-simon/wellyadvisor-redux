@@ -10,7 +10,7 @@ export const GetVenues = () => {
       const venueArray = [];
       const q = query(collection(db, "venues"));
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((item) => venueArray.push(item.data()));
+      querySnapshot.forEach((doc) => venueArray.push({id:doc.id, ...doc.data()}))
       setVenues(venueArray);
     };
     getVenueList();
