@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import AddReview from "../../components/AddReview";
 
 const Venue = () => {
   const { id } = useParams();
@@ -16,7 +16,12 @@ const Venue = () => {
     </div>
   ));
 
-  return <>{content}</>;
+  return (
+    <>
+        {content}
+        <AddReview id = {id}/>
+    </>
+  );
 };
  
 export default Venue;

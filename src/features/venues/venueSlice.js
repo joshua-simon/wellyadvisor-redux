@@ -1,5 +1,5 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import { collection,query,getDocs } from "firebase/firestore";
+import { collection,query,getDocs,doc,updateDoc,arrayUnion } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
 
@@ -21,6 +21,22 @@ export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
     }
   });
 
+  export const postReview = createAsyncThunk("venues/postReview", async (review) => {
+      try {
+        const venueRef = doc(db,"venues",review.id)
+        await updateDoc(venueRef, {
+          reviews: arrayUnion({ 
+            title:review.title,
+            blurb:review.blurb, 
+            reviewId:review.reviewId })
+        })
+      } catch (err) {
+        console.log('Error :', err)
+      }
+  })
+
+
+
 const venueSlice = createSlice({
   name: "venues",
   initialState,
@@ -30,9 +46,13 @@ const venueSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(fetchVenues.fulfilled, (state, action) => {
+    builder
+      .addCase(fetchVenues.fulfilled, (state, action) => {
       state.venues = action.payload;
-    });
+    })
+      .addCase(postReview.fulfilled, (state,action) => {
+
+      })
   },
 });
 

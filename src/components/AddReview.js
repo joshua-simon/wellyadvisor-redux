@@ -1,10 +1,11 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { ADD_REVIEW } from "./venueSlice"
+import { ADD_REVIEW } from "../features/venues/venueSlice"
 import { nanoid } from "@reduxjs/toolkit"
+import { postReview } from "../features/venues/venueSlice"
 
 
-const AddReview = () => {
+const AddReview = ({ id }) => {
     const [ {title,blurb}, setFormDetails ] = useState({title:'', blurb: ''})
 
     const dispatch = useDispatch()
@@ -18,16 +19,13 @@ const AddReview = () => {
     }
 
     const handleClick = (e) => {
-        e.preventDefault()
-        if(title && blurb){
-            dispatch(ADD_REVIEW({
-                id: nanoid(),
-                title,
-                blurb
-            }))
-        // setFormDetails({title: '', blurb: ''})
-        }
-    }
+      e.preventDefault();
+      if (title && blurb) {
+        const reviewId = nanoid()
+        const review = { id, title, blurb, reviewId };
+        dispatch(postReview(review));
+      }
+    };
 
 
     return(

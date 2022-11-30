@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Venue from "./features/venues/Venue";
 import VenueList from "./features/venues/VenueList";
-import AddReview from "./features/venues/AddReview";
+import AddReview from "./components/AddReview";
 import './styles.css'
 
 const App = () => {
