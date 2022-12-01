@@ -1,7 +1,6 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import { collection,query,getDocs,doc,updateDoc,arrayUnion } from "firebase/firestore";
+import { collection,query,getDocs,doc,updateDoc,arrayUnion, arrayRemove, FieldValue } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
-
 
 const initialState = {
     venues: []
@@ -34,6 +33,22 @@ export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
         console.log('Error :', err)
       }
   })
+
+export const deleteReview = createAsyncThunk("venues/deleteReview", async (review) => {
+
+  const newReview = {blurb:review.blurb, title: review.title, reviewId: review.reviewId}
+
+  try {
+    const venueRef = doc(db,"venues",review.id)
+    await updateDoc(venueRef, {
+      reviews: arrayRemove(newReview)
+    })
+  } catch (err) {
+    console.log('Error: ', err)
+  }
+})
+
+
 
 
 const venueSlice = createSlice({

@@ -8,12 +8,12 @@ const Venue = () => {
 
   const venues = useSelector((state) => state.venues);
 
-  const venue = venues.venues.filter((item) => item.id == id);
+  const venue = venues.venues.filter((item) => item.id === id);
 
   const content = venue.map((item) => (
-    <div className="venue-page-main">
+    <div className="venue-page-main" key = {item.name}>
       <h2>{item.name}</h2>
-      <img src={item.photo} />
+      <img src={item.photo} alt = "venue"/>
     </div>
   ));
 

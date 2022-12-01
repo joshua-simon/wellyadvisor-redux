@@ -5,6 +5,7 @@ import { postReview } from "../features/venues/venueSlice"
 
 
 const AddReview = ({ id }) => {
+
     const [ {title,blurb}, setFormDetails ] = useState({title:'', blurb: ''})
 
     const dispatch = useDispatch()
@@ -17,11 +18,11 @@ const AddReview = ({ id }) => {
         }))
     }
 
-    const handleClick = (e) => {
+    const handleClick =  (e) => {
       e.preventDefault();
       if (title && blurb) {
         const reviewId = nanoid()
-        const review = { id, title, blurb, reviewId };
+        const review = { title, blurb, reviewId };
         dispatch(postReview(review));
       }
     };

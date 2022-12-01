@@ -1,10 +1,24 @@
+import { useDispatch } from "react-redux";
+import { deleteReview } from "../features/venues/venueSlice";
 
 const Reviews = ({ venue }) => {
 
+    const venueId = venue[0].id
+
+    const dispatch = useDispatch()
+
+    const removeReview = (review) => {
+        dispatch(deleteReview({...review, id:venueId}))
+    }
+
     const content = venue[0].reviews.map(review => (
-        <div className="review">
+        <div className="review" key = {review.reviewId}>
             <h2>{review.title}</h2>
             <h3>{review.blurb}</h3>
+            <div>
+                <p>Edit</p>
+                <button onClick = {() => removeReview(review)}>Delete</button>
+            </div>
         </div>
     ))
 

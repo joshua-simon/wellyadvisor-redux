@@ -30,3 +30,9 @@ body {
     color:#7cac35;
     margin-top:0;
 }
+
+/* Reviews */
+
+.review {
+    border: 1px solid black;
+}
