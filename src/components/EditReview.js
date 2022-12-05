@@ -10,11 +10,11 @@ const EditReview = () => {
 
     const { id,reviewId } = useParams()
     const venue =  UseVenue(id)
-    const review = venue[0]?.reviews.filter((review) => review.reviewId === reviewId)
+    const prevReview = venue[0]?.reviews.filter((review) => review.reviewId === reviewId)
 
     const handleSubmit = (e) => {
-        const review = {title,blurb,id,reviewId}
-        e.preventDefault()
+         e.preventDefault()
+        const review = {title,blurb,id,reviewId,prevReview}
         dispatch(updateReview(review))
     }
 
@@ -34,7 +34,7 @@ const EditReview = () => {
             Title
             <input
               type="text"
-              placeholder={review && review[0].title}
+              placeholder={prevReview && prevReview[0].title}
               onChange={handleChange}
               name="title"
             />
@@ -43,7 +43,7 @@ const EditReview = () => {
             Blurb
             <input
               type="text"
-              placeholder={review && review[0].blurb}
+              placeholder={prevReview && prevReview[0].blurb}
               onChange={handleChange}
               name="blurb"
             />

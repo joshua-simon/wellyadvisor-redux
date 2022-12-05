@@ -36,7 +36,25 @@ export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
   })
 
   export const updateReview = createAsyncThunk("venues/updateReview", async (review) => {
-      console.log('it got here')
+
+      const venueRef = doc(db,"venues", review.id)
+      try {
+        await updateDoc(venueRef, {
+          reviews: arrayRemove(...review.prevReview)
+        })
+      } catch (err) {
+        console.log('Error: ', err)
+      }
+      try {
+        await updateDoc(venueRef, {
+          reviews: arrayUnion({ 
+            title:review.title,
+            blurb:review.blurb, 
+            reviewId:review.reviewId })
+        })
+      } catch (err) {
+        console.log('Error :', err)
+      }
   })
 
 export const deleteReview = createAsyncThunk("venues/deleteReview", async (review) => {
