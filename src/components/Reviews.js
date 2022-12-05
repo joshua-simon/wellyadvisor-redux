@@ -1,17 +1,23 @@
 import { useDispatch } from "react-redux";
-import { deleteReview } from "../features/venues/venueSlice";
+import { deleteReview,fetchVenues } from "../features/venues/venueSlice";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const Reviews = ({ venue }) => {
 
-    const venueId = venue[0].id
+    // const { id } = useParams()
+    // const venues   = useSelector((store) => store.venues)
+    // const venue = venues.venues.filter((item) => item.id === id);
+
 
     const dispatch = useDispatch()
 
     const removeReview = (review) => {
-        dispatch(deleteReview({...review, id:venueId}))
+        // dispatch(deleteReview({...review, id:venueId}))
     }
 
-    const content = venue[0].reviews.map(review => (
+
+    const content = venue[0]?.reviews.map(review => (
         <div className="review" key = {review.reviewId}>
             <h2>{review.title}</h2>
             <h3>{review.blurb}</h3>

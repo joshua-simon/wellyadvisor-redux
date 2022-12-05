@@ -3,7 +3,8 @@ import { collection,query,getDocs,doc,updateDoc,arrayUnion, arrayRemove, FieldVa
 import { db } from "../../firebaseConfig";
 
 const initialState = {
-    venues: []
+    venues: [],
+    isLoading: true
 }
 
 export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
@@ -49,8 +50,6 @@ export const deleteReview = createAsyncThunk("venues/deleteReview", async (revie
 })
 
 
-
-
 const venueSlice = createSlice({
   name: "venues",
   initialState,
@@ -58,9 +57,19 @@ const venueSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchVenues.fulfilled, (state, action) => {
+      state.isLoading = false
       state.venues = action.payload;
+    })
+    .addCase(fetchVenues.pending, (state) => {
+      state.isLoading = true
+    })
+    .addCase(fetchVenues.rejected, (state) => {
+      state.isLoading = false
     })
   },
 });
 
 export default venueSlice.reducer
+
+
+

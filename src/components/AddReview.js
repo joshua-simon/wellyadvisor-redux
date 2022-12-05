@@ -22,7 +22,7 @@ const AddReview = ({ id }) => {
       e.preventDefault();
       if (title && blurb) {
         const reviewId = nanoid()
-        const review = { title, blurb, reviewId };
+        const review = { id, title, blurb, reviewId };
         dispatch(postReview(review));
       }
     };

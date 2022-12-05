@@ -2,16 +2,18 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchVenues } from "./venueSlice";
 import { useSelector,useDispatch } from "react-redux";
+import Venue from "./Venue";
 
 
 const VenueList = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchVenues());
-  }, [dispatch]);
 
   const venues = useSelector((state) => state.venues);
+  const loading = useSelector((state) => state.isLoading)
+
+  console.log(venues)
+
+
+  const loadingSection  = <div>loading...</div>
 
   const content = venues.venues.map((venue) => (
     <Link to={`/venue/${venue.id}`} style = {{textDecoration: "none"}} key = {venue.name}>
@@ -24,7 +26,7 @@ const VenueList = () => {
 
   return (
     <div className="venue-list">
-      {content}
+      {loading ? loadingSection : content}
     </div>
   );
 };

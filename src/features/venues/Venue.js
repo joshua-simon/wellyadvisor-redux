@@ -9,6 +9,7 @@ const Venue = () => {
   const venues = useSelector((state) => state.venues);
 
   const venue = venues.venues.filter((item) => item.id === id);
+  console.log(venue[0]?.reviews)
 
   const content = venue.map((item) => (
     <div className="venue-page-main" key = {item.name}>
@@ -17,6 +18,8 @@ const Venue = () => {
     </div>
   ));
 
+  // console.log(venues)
+
   return (
     <>
         {content}
@@ -24,6 +27,7 @@ const Venue = () => {
         <Reviews venue = {venue}/>
     </>
   );
+
 };
  
 export default Venue;
