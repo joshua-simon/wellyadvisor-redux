@@ -5,17 +5,15 @@ import { useParams } from "react-router-dom";
 
 const Reviews = ({ venue }) => {
 
-    // const { id } = useParams()
-    // const venues   = useSelector((store) => store.venues)
-    // const venue = venues.venues.filter((item) => item.id === id);
-
-
     const dispatch = useDispatch()
 
-    const removeReview = (review) => {
-        // dispatch(deleteReview({...review, id:venueId}))
-    }
 
+
+    const venueId = venue[0]?.id
+
+    const removeReview = (review) => {
+        dispatch(deleteReview({...review, id:venueId}))
+    }
 
     const content = venue[0]?.reviews.map(review => (
         <div className="review" key = {review.reviewId}>
