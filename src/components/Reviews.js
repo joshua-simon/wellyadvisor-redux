@@ -1,13 +1,10 @@
 import { useDispatch } from "react-redux";
 import { deleteReview,fetchVenues } from "../features/venues/venueSlice";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Reviews = ({ venue }) => {
 
     const dispatch = useDispatch()
-
-
 
     const venueId = venue[0]?.id
 
@@ -20,7 +17,7 @@ const Reviews = ({ venue }) => {
             <h2>{review.title}</h2>
             <h3>{review.blurb}</h3>
             <div>
-                <p>Edit</p>
+                <Link to = {`/venue/${venue[0].id}/${review.reviewId}/edit`}><button>Edit</button></Link>
                 <button onClick = {() => removeReview(review)}>Delete</button>
             </div>
         </div>

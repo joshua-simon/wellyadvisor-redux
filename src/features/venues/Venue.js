@@ -18,8 +18,6 @@ const Venue = () => {
     </div>
   ));
 
-  // console.log(venues)
-
   return (
     <>
         {content}

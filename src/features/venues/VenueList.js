@@ -1,17 +1,10 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { fetchVenues } from "./venueSlice";
 import { useSelector,useDispatch } from "react-redux";
-import Venue from "./Venue";
-
 
 const VenueList = () => {
 
   const venues = useSelector((state) => state.venues);
   const loading = useSelector((state) => state.isLoading)
-
-  console.log(venues)
-
 
   const loadingSection  = <div>loading...</div>
 
