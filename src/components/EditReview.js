@@ -1,18 +1,57 @@
+import { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import UseVenue from "../hooks/useVenue";
+import { updateReview } from '../features/venues/venueSlice';
 
 const EditReview = () => {
+    const dispatch = useDispatch()
+    const [ {title,blurb}, setFormDetails ] = useState({title:"",blurb:""})
 
     const { id,reviewId } = useParams()
-    const venues = useSelector((store) => store.venues)
-    const venue = venues.venues.filter((item) => item.id === id);
-    //MAKE A GET VENUE HOOK
-    const review = venue[0].reviews.filter((review) => review.reviewId === reviewId)
+    const venue =  UseVenue(id)
+    const review = venue[0]?.reviews.filter((review) => review.reviewId === reviewId)
+
+    const handleSubmit = (e) => {
+        const review = {title,blurb,id,reviewId}
+        e.preventDefault()
+        dispatch(updateReview(review))
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setFormDetails(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
+    }
 
     return (
-        <h2>Edit review</h2>
-    )
+      <div>
+        Edit review
+        <form onSubmit={handleSubmit}>
+          <label>
+            Title
+            <input
+              type="text"
+              placeholder={review && review[0].title}
+              onChange={handleChange}
+              name="title"
+            />
+          </label>
+          <label>
+            Blurb
+            <input
+              type="text"
+              placeholder={review && review[0].blurb}
+              onChange={handleChange}
+              name="blurb"
+            />
+          </label>
+          <button type="Submit">Submit</button>
+        </form>
+      </div>
+    );
 }
  
 export default EditReview;

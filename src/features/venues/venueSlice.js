@@ -35,8 +35,11 @@ export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
       }
   })
 
-export const deleteReview = createAsyncThunk("venues/deleteReview", async (review) => {
+  export const updateReview = createAsyncThunk("venues/updateReview", async (review) => {
+      console.log('it got here')
+  })
 
+export const deleteReview = createAsyncThunk("venues/deleteReview", async (review) => {
   const newReview = {blurb:review.blurb, title: review.title, reviewId: review.reviewId}
 
   try {
