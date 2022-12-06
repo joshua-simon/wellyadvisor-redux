@@ -1,25 +1,27 @@
-import { useDispatch } from "react-redux";
-import { deleteReview,fetchVenues } from "../features/venues/venueSlice";
+import { useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchAllReviews } from "../features/venues/reviewSlice";
+import { deleteReview } from "../features/venues/reviewSlice";
 
 const Reviews = ({ venue }) => {
 
-    const dispatch = useDispatch()
-
     const venueId = venue[0]?.id
 
+    const dispatch = useDispatch()
+
+
     const removeReview = (review) => {
-        dispatch(deleteReview({...review, id:venueId}))
+       dispatch(deleteReview({...review,venueId}))
     }
 
-    const content = venue[0]?.reviews.map(review => (
-        <div className="review" key = {review.reviewId}>
-            <h2>{review.title}</h2>
-            <h3>{review.blurb}</h3>
-            <div>
-                <Link to = {`/venue/${venue[0].id}/${review.reviewId}/edit`}><button>Edit</button></Link>
-                <button onClick = {() => removeReview(review)}>Delete</button>
-            </div>
+    const reviews = useSelector((store) => store.reviews)
+
+    const content = reviews && reviews?.reviews.map(review => (
+        <div>
+            <h1>{review.title}</h1>
+            <h2>{review.blurb}</h2>
+            <button onClick = {() => removeReview(review)}>Delete</button>
         </div>
     ))
 

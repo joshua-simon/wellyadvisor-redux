@@ -8,6 +8,7 @@ const initialState = {
 }
 
 export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
+
     try {
       const venueArray = [];
       const q = query(collection(db, "venues"));
@@ -15,6 +16,8 @@ export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
       querySnapshot.forEach((doc) =>
         venueArray.push({ id: doc.id, ...doc.data() })
       );
+      
+     const reviewArray = venueArray?.map(item => item.reviews)
       return venueArray;
     } catch (err) {
       console.log("Error: ", err);
@@ -57,18 +60,7 @@ export const fetchVenues = createAsyncThunk("venues/fetchVenues", async () => {
       }
   })
 
-export const deleteReview = createAsyncThunk("venues/deleteReview", async (review) => {
-  const newReview = {blurb:review.blurb, title: review.title, reviewId: review.reviewId}
 
-  try {
-    const venueRef = doc(db,"venues",review.id)
-    await updateDoc(venueRef, {
-      reviews: arrayRemove(newReview)
-    })
-  } catch (err) {
-    console.log('Error: ', err)
-  }
-})
 
 
 const venueSlice = createSlice({

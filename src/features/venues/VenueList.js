@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
+import { fetchReviews } from "./venueSlice";
 
 const VenueList = () => {
+
+  const dispatch = useDispatch()
 
   const venues = useSelector((state) => state.venues);
   const loading = useSelector((state) => state.isLoading)
@@ -16,6 +20,8 @@ const VenueList = () => {
       </div>
     </Link>
   ));
+
+
 
   return (
     <div className="venue-list">

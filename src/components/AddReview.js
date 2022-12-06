@@ -1,7 +1,7 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useState, useEffect } from "react"
+import { useDispatch,useSelector } from "react-redux"
 import { nanoid } from "@reduxjs/toolkit"
-import { postReview } from "../features/venues/venueSlice"
+import { postNewReview } from "../features/venues/reviewSlice"
 
 
 const AddReview = ({ id }) => {
@@ -23,7 +23,7 @@ const AddReview = ({ id }) => {
       if (title && blurb) {
         const reviewId = nanoid()
         const review = { id, title, blurb, reviewId };
-        dispatch(postReview(review));
+        dispatch(postNewReview(review));
       }
     };
 
