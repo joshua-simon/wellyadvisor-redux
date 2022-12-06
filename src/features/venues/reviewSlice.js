@@ -51,7 +51,6 @@ export const postNewReview = createAsyncThunk(
   export const deleteReview = createAsyncThunk(
     "venues/deleteReview",
     async (review) => {
-      console.log(review);
   
       try {
         await deleteDoc(doc(db, `venues/${review.venueId}/reviews`, review.id));
@@ -60,6 +59,31 @@ export const postNewReview = createAsyncThunk(
       }
   
       return review;
+    }
+  );
+
+  export const updateReview = createAsyncThunk(
+    "venues/updateReview",
+    async (review) => {
+      console.log(review);
+
+      try {
+        await deleteDoc(
+          doc(db, `venues/${review.id}/reviews`, review.reviewId)
+        );
+      } catch (err) {
+        console.log("Error: ", err);
+      }
+      try {
+        const docRef = doc(db, "venues", review.id);
+        const colRef = collection(docRef, "reviews");
+        addDoc(colRef, {
+          title: review.title,
+          blurb: review.blurb,
+        });
+      } catch (err) {
+        console.log("Error :", err);
+      }
     }
   );
 

@@ -1,16 +1,16 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import UseVenue from "../hooks/useVenue";
-import { updateReview } from '../features/venues/venueSlice';
+import { updateReview } from '../features/venues/reviewSlice';
 
 const EditReview = () => {
     const dispatch = useDispatch()
     const [ {title,blurb}, setFormDetails ] = useState({title:"",blurb:""})
 
     const { id,reviewId } = useParams()
-    const venue =  UseVenue(id)
-    const prevReview = venue[0]?.reviews.filter((review) => review.reviewId === reviewId)
+    const reviews = useSelector((store) => store.reviews)
+    const prevReview = reviews.reviews.filter((item) => item.id === reviewId )
+
 
     const handleSubmit = (e) => {
          e.preventDefault()
@@ -34,7 +34,7 @@ const EditReview = () => {
             Title
             <input
               type="text"
-              placeholder={prevReview && prevReview[0].title}
+              placeholder={prevReview && prevReview[0]?.title}
               onChange={handleChange}
               name="title"
             />
@@ -43,7 +43,7 @@ const EditReview = () => {
             Blurb
             <input
               type="text"
-              placeholder={prevReview && prevReview[0].blurb}
+              placeholder={prevReview && prevReview[0]?.blurb}
               onChange={handleChange}
               name="blurb"
             />
