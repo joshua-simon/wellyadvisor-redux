@@ -31,8 +31,43 @@ body {
 
 
 .venue-item p {
-    color:#7cac35;
+    color:#68912b;
     margin-top:0;
+}
+
+/* Nav */
+
+nav {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items:center;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 3%;
+}
+
+nav h1 {
+    color:#68912b;
+    font-size:x-large;
+    transform: translateX(10%);
+}
+
+.nav-left {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    transform: translateX(10%);
+}
+
+nav a {
+    transform: translateX(-50%);
+    text-decoration: none;
+}
+
+.react-icons {
+    color:black;
 }
 
 /* Reviews */

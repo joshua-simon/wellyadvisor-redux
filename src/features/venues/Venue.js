@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AddReview from "../../components/AddReview";
 import Reviews from "../../components/Reviews";
 import { fetchAllReviews } from "./reviewSlice";
+import Header from "../../components/Header";
 
 const Venue = () => {
   const { id } = useParams();
@@ -29,6 +30,7 @@ const Venue = () => {
 
   return (
     <>
+        <Header/>
         {content}
         <AddReview id = {id}/>
         <Reviews venue = {venue}/>
