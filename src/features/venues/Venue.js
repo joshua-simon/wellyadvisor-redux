@@ -14,18 +14,18 @@ const Venue = () => {
 
   const venue = venues.venues.filter((item) => item.id === id);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const venueId = venue[0]?.id
+  const venueId = venue[0]?.id;
 
   useEffect(() => {
-    dispatch(fetchAllReviews(venueId))
-},[venues])
+    dispatch(fetchAllReviews(venueId));
+  }, [venues]);
 
   const content = venue.map((item) => (
-    <div className="venue-page-item" key = {item.name}>
+    <div className="venue-page-item" key={item.name}>
       <h1>{item.name}</h1>
-      <img src={item.photo} alt = "venue"/>
+      <img src={item.photo} alt="venue" />
     </div>
   ));
 
@@ -37,10 +37,9 @@ const Venue = () => {
         <AddReview id={id} />
         <Reviews venue={venue} />
       </div>
-    <Footer/>
+      <Footer />
     </>
   );
-
 };
- 
+
 export default Venue;

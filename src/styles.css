@@ -203,3 +203,52 @@ footer {
     display:flex;
     flex-direction: row;
 }
+
+/* Edit review */
+
+.edit-review-form {
+    display:flex;
+    flex-direction: column;
+    width:20%;
+}
+
+.edit-review-container h2 {
+    color:#68912b;
+}
+
+.edit-review-form label {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:2%
+}
+
+.edit-review-form button {
+    font-family: 'Sofia Pro';
+    background-color: #314c88;
+    color:white;
+    cursor: pointer;
+    border:none;
+    border-radius:5px;
+    width: 50%;
+    margin-top:2%; 
+}
+
+.star-rating-edit {
+    display:flex;
+    flex-direction: row;
+    margin:0;
+
+}
+
+.star-rating-container {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    width:60%;
+}
+
+.error {
+    font-family: Helvetica;
+    color: red;
+}
