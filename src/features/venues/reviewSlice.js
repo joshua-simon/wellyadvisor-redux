@@ -33,7 +33,6 @@ export const postNewReview = createAsyncThunk(
   export const fetchAllReviews = createAsyncThunk(
     "venues/fetchAllReviews",
     async (id) => {
-        console.log(id)
       try {
         const reviewArray = [];
         const q = query(collection(db, `venues/${id}/reviews`));
@@ -84,6 +83,7 @@ export const postNewReview = createAsyncThunk(
       } catch (err) {
         console.log("Error :", err);
       }
+      return {title:review.title,blurb:review.blurb,id:review.id, reviewId: review.reviewId}
     }
   );
 
@@ -101,6 +101,9 @@ export const postNewReview = createAsyncThunk(
         .addCase(postNewReview.fulfilled, (state,action) => {
             state.reviews.push(action.payload)
         })
+        // .addCase(updateReview.fulfilled, (state,action) => {
+        //   state.reviews = action.payload
+        // })
         .addCase(deleteReview.fulfilled, (state, action) => {
           state.reviews = state.reviews.filter((item) => {
             return item.id !== action.payload.id;

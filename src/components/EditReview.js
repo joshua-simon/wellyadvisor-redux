@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useDispatch,useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { updateReview } from '../features/venues/reviewSlice';
 
 const EditReview = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [ {title,blurb}, setFormDetails ] = useState({title:"",blurb:""})
 
     const { id,reviewId } = useParams()
@@ -16,6 +17,7 @@ const EditReview = () => {
          e.preventDefault()
         const review = {title,blurb,id,reviewId,prevReview}
         dispatch(updateReview(review))
+        navigate(`/venue/${review.id}`)
     }
 
     const handleChange = (e) => {

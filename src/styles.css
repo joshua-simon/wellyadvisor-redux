@@ -11,22 +11,26 @@ body {
 }
 
 .venue-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    row-gap:0%;
+    column-gap: 2px;
     background-color: white;
     padding-bottom:4%;
     border-radius: 5px;
     align-items: center;
-    padding-top:4%;
+    padding:4%;
 }
 
 .venue-list img {
-    width:150px;
-    height:100px;
+    height:40%;
+    width:80%;
+    aspect-ratio: 1;
 }
 
-.venue-item h2 {
+
+.venue-item p {
     color:#7cac35;
     margin-top:0;
 }
