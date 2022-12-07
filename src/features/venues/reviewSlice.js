@@ -21,12 +21,13 @@ export const postNewReview = createAsyncThunk(
         const colRef = collection(docRef, "reviews");
         addDoc(colRef, {
           title: review.title,
-          blurb: review.blurb
+          blurb: review.blurb,
+          rating: review.rating
         });
       } catch (err) {
         console.log("Error :", err);
       }
-      return {title: review.title, blurb: review.blurb}
+      return {title: review.title, blurb: review.blurb, rating:review.rating}
     }
   );
 

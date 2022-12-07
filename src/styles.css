@@ -198,3 +198,8 @@ footer {
     background-color:#314c88;
     color:white;
 }
+
+.star-rating {
+    display:flex;
+    flex-direction: row;
+}

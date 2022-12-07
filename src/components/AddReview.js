@@ -23,12 +23,13 @@ const AddReview = ({ id }) => {
       e.preventDefault();
       if (title && blurb) {
         const reviewId = nanoid()
-        const review = { id, title, blurb, reviewId };
+        const review = { id, title, blurb, reviewId,rating };
         dispatch(postNewReview(review));
       }
     };
 
     const handleStarClick = (num) => {
+        console.log(num)
         setRating(num)
     }
 
@@ -57,8 +58,8 @@ const AddReview = ({ id }) => {
                 placeholder = "Enter review"
                 />
                 <div className = 'star-container'>
+                <p>Select rating: {rating}</p>
                 <p>{starList}</p>
-                <p>Rating: {rating}</p>
                 </div>
                 <button type = "button" onClick = {handleClick}>Submit</button>
             </form>
