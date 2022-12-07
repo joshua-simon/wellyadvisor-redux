@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import Header from "../../components/Header";
-
+import Footer from "../../components/Footer";
 
 const VenueList = () => {
 
@@ -26,6 +26,7 @@ const VenueList = () => {
       <div className="venue-list">
         {loading ? loadingSection : content}
       </div>
+    <Footer/>
     </div>
   );
 };

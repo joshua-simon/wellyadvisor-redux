@@ -16,16 +16,19 @@ const Reviews = ({ venue }) => {
 
 
     const content = reviews && reviews?.reviews.map(review => (
-        <div key ={review.title}>
-            <h1>{review.title}</h1>
-            <h2>{review.blurb}</h2>
-            <button onClick = {() => removeReview(review)}>Delete</button>
-            <Link to = {`/venue/${venueId}/${review.id}/edit`}><button>Edit</button></Link>
+        <div key ={review.title} className='review'>
+            <h3>{review.title}</h3>
+            <p>{review.blurb}</p>
+            <div className="review-buttons">
+                <button onClick = {() => removeReview(review)}>Delete</button>
+                <Link to = {`/venue/${venueId}/${review.id}/edit`}><button>Edit</button></Link>
+            </div>
         </div>
     ))
 
     return (
-        <div className="all-reviews">
+        <div className="reviews-container">   
+            <h2>Reviews</h2>
             {content}
         </div>
     )

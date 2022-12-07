@@ -1,6 +1,9 @@
 @import url(//db.onlinewebfonts.com/c/05428692254b58ccb090358a3dfecfff?family=Sofia+Pro);
 @font-face {font-family: "Sofia Pro"; src: url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.eot"); src: url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.woff") format("woff"), url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.svg#Sofia Pro") format("svg"); }
-
+@font-face {
+    font-family: Helvetica;
+    src: url("../src/assets/HelveticaNeue-Light.otf") format("opentype");
+}
 
 body {
     max-width: 1200px;
@@ -70,8 +73,128 @@ nav a {
     color:black;
 }
 
+
+
+/* Foooter */
+
+footer {
+    background-color: white;
+    color:#68912b;
+    text-align: center;
+    margin-top:5%;
+}
+
+/* Venue page */
+
+.venue-main {
+    display: flex;
+    flex-direction:column;
+}
+
+.venue-item {
+    display:flex;
+    flex-direction: column;
+    color:#68912b;
+}
+
+.venue-page-item img {
+    width:40%;
+    height:15%;
+}
+
+.venue-page-item h1 {
+    margin-bottom:10px;
+    color:#68912b;
+}
+
+.review-form-container {
+    margin-top: 0px;
+}
+
+.review-form-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 40%;
+}
+
+.review-form-container form input{
+    margin:1%;
+    font-family: 'Sofia Pro';
+}
+
+.review-form-container form button{
+    margin:1%;
+    width:20%;
+    font-family: 'Sofia Pro';
+    background-color: #314c88;
+    color:white;
+    cursor: pointer;
+    border:none;
+    border-radius: 5px;
+}
+
+.add-review-container h2 {
+    color:#68912b;
+    margin-top: 5%;
+    margin-bottom:0;
+}
+
 /* Reviews */
 
+.reviews-container h2 {
+    color:#68912b;
+}
+
 .review {
-    border: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    padding:1%;
+    margin:10px;
+    width:40%;
+    transform: translateX(-2%);
+}
+
+.review p {
+    font-family: Helvetica;
+    margin:0;
+    padding:0;
+}
+
+.review h3 {
+    margin:0;
+    padding:0;
+}
+
+.review-buttons button {
+    font-family: 'Sofia Pro';
+    background-color: #314c88;
+    color:white;
+    cursor: pointer;
+    border:none;
+    border-radius: 5px; 
+    margin-right:2px; 
+    margin-top:2%;  
+}
+
+.star-container {
+    display:flex;
+    flex-direction: row;
+    justify-content: left;
+    color:#68912b;
+}
+
+.star-container p {
+    padding-right:5%;
+}
+
+.star {
+    cursor: pointer;
+    border-radius:5px;
+}
+
+.star:hover {
+    background-color:#314c88;
+    color:white;
 }

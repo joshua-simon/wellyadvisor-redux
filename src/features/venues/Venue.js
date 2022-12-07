@@ -5,6 +5,7 @@ import AddReview from "../../components/AddReview";
 import Reviews from "../../components/Reviews";
 import { fetchAllReviews } from "./reviewSlice";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Venue = () => {
   const { id } = useParams();
@@ -22,18 +23,21 @@ const Venue = () => {
 },[venues])
 
   const content = venue.map((item) => (
-    <div className="venue-page-main" key = {item.name}>
-      <h2>{item.name}</h2>
+    <div className="venue-page-item" key = {item.name}>
+      <h1>{item.name}</h1>
       <img src={item.photo} alt = "venue"/>
     </div>
   ));
 
   return (
     <>
-        <Header/>
+      <Header />
+      <div className="venue-main">
         {content}
-        <AddReview id = {id}/>
-        <Reviews venue = {venue}/>
+        <AddReview id={id} />
+        <Reviews venue={venue} />
+      </div>
+    <Footer/>
     </>
   );
 
