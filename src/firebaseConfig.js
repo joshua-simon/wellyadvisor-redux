@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore";
 
 const firebaseApp = initializeApp({
-  apiKey: "AIzaSyCmKjjuGNim-PQetLQi-7c8a6cPLqK7Uqw",
+  apiKey: `${process.env.REACT_APP_API_KEY}`,
   authDomain: "wellyadvisor-with-redux.firebaseapp.com",
   projectId: "wellyadvisor-with-redux",
   storageBucket: "wellyadvisor-with-redux.appspot.com",

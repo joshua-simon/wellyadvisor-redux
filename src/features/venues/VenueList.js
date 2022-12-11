@@ -7,6 +7,8 @@ import Footer from "../../components/Footer";
 const VenueList = () => {
   const [venueType, setVenueType] = useState("");
 
+
+
   const venues = useSelector((state) => state.venues);
   const loading = useSelector((state) => state.isLoading);
 
